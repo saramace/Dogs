@@ -1,4 +1,4 @@
-package com.example.dogs.dogDetailPage
+package com.example.dogs.dogScreen
 
 data class DogBreedsListUiState(
     val isInitialLoading: Boolean = true,

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dogs.api.BreedInfo
 import com.example.dogs.api.DogApi
-import com.example.dogs.dogDetailPage.DogDetailsUiState
+import com.example.dogs.dogScreen.DogDetailsUiState
 import com.example.dogs.ui.NavDestinations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -54,11 +54,7 @@ class DogDetailsViewModel @Inject constructor(
                     it.copy(dogDetails = breedAttributes, isLoading = false)
                 }
 
-                Log.d("DogDetailsViewModel", "Fetched dog: ${breedAttributes.name}")
-
          } catch (e: Exception) {
-                Log.e("DogDetailsViewModel", "exception is $e")
-
                 //setting uiState to not be loading and adding error message
                 _uiState.update {
                     it.copy(isLoading = false, errorMessage = "Failed to fetch dog details: ${e.message}")

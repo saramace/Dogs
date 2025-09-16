@@ -1,4 +1,4 @@
-package com.example.dogs.dogDetailPage
+package com.example.dogs.dogScreen
 
 import android.net.http.HttpException
 import android.os.Build

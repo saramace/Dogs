@@ -9,18 +9,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.dogs.dogDetailPage.DogBreedsList
-import com.example.dogs.dogDetailPage.DogDetailsScreen
+import com.example.dogs.dogScreen.DogBreedsList
+import com.example.dogs.dogScreen.DogDetailsScreen
 import com.example.dogs.ui.NavDestinations
 import com.example.dogs.ui.dogDetailRoute
 import com.example.dogs.ui.theme.DogsTheme
-import com.example.dogs.ui.viewModels.DogListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

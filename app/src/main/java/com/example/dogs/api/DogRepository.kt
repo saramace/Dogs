@@ -3,8 +3,8 @@ package com.example.dogs.api
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.dogs.dogDetailPage.DEFAULT_PAGE_SIZE
-import com.example.dogs.dogDetailPage.DogBreedPaginingSource
+import com.example.dogs.dogScreen.DEFAULT_PAGE_SIZE
+import com.example.dogs.dogScreen.DogBreedPaginingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

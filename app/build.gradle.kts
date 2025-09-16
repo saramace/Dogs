@@ -79,4 +79,9 @@ dependencies {
     implementation(libs.okhttp.core)
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.kotlinx.serialization.json)
+    testImplementation(libs.androidx.arch.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation("org.mockito.kotlin:mockito-kotlin:6.0.0")
+    testImplementation(libs.turbine)
+    testImplementation(libs.okhttp.mockwebserver)
 }
