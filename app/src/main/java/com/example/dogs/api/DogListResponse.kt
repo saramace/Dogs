@@ -2,6 +2,7 @@ package com.example.dogs.api
 
 import kotlinx.serialization.Serializable
 
+@Serializable
 data class DogListResponse(
     val data: List<DogLists>,
     val meta: Meta,
@@ -9,6 +10,7 @@ data class DogListResponse(
 )
 
 
+@Serializable
 data class DogLists(
     val id: String,
     val type: String,
@@ -21,8 +23,8 @@ data class BreedInfo(
     val description: String,
     val hypoallergenic: Boolean,
     val life: Life,
-    val maleWeight: Weight,
-    val femaleWeight: Weight,
+    val maleWeight: Weight? = null,
+    val femaleWeight: Weight? = null,
 )
 
 @Serializable

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -25,16 +26,15 @@ import com.example.dogs.api.Life
 import com.example.dogs.api.Weight
 import com.example.dogs.ui.theme.DogsTheme
 import com.example.dogs.ui.viewModels.DogDetailsViewModel
-import com.example.dogs.ui.viewModels.DogDetailsViewModelFactory
 
 @Composable
-fun DogDetailsScreen(dogId: String, navController: NavController, modifier: Modifier) {
+fun DogDetailsScreen(
+    navController: NavController,
+    detailsViewModel: DogDetailsViewModel = hiltViewModel() ,
+    modifier: Modifier) {
 
-    val viewModel: DogDetailsViewModel = viewModel(
-        factory = DogDetailsViewModelFactory(dogId)
-    )
 
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by detailsViewModel.uiState.collectAsState()
 
     Box(
         modifier = modifier
@@ -50,8 +50,7 @@ fun DogDetailsScreen(dogId: String, navController: NavController, modifier: Modi
             uiState.errorMessage != null -> {
               val errorMessage = uiState.errorMessage
              DogDetailsErrorScreen(
-                 viewModel = viewModel,
-                 dogId = dogId,
+                 viewModel = detailsViewModel,
                  errorMessage = errorMessage,
                  navController = navController,
                  modifier = modifier
@@ -80,23 +79,22 @@ fun DogDetailsScreen(dogId: String, navController: NavController, modifier: Modi
 @Composable
 fun DogDetailsErrorScreen(
     viewModel: DogDetailsViewModel,
-    dogId: String,
     errorMessage: String?,
     navController: NavController,
     modifier: Modifier
 ) {
  Column(modifier = modifier) {
      Text("Error: ${errorMessage ?: "An unknown error occurred."}")
-     DogDetailsRetryButton(viewModel, dogId, Modifier)
+     DogDetailsRetryButton(viewModel, Modifier)
      DogDetailsBackButton(navController, Modifier)
 
  }
 }
     @Composable
-    fun DogDetailsRetryButton(viewModel: DogDetailsViewModel, dogId: String, modifier: Modifier){
+    fun DogDetailsRetryButton(viewModel: DogDetailsViewModel, modifier: Modifier){
         Button(
-            onClick = { viewModel.loadDogDetails(dogId) }, // Example of calling ViewModel action
-            modifier = Modifier.padding(top = 16.dp)
+            onClick = { viewModel.retryLoadDetails() },
+            modifier = modifier.padding(top = 16.dp)
         ) {
             Text("Retry")
         }
@@ -125,7 +123,6 @@ fun DogDetailsScreenPreview_Success(){
     val navController = rememberNavController()
 
 DogDetailsScreen(
-    dogId = "1",
     navController = navController,
     modifier = Modifier
 )

@@ -6,8 +6,11 @@ import androidx.paging.PagingData
 import com.example.dogs.dogDetailPage.DEFAULT_PAGE_SIZE
 import com.example.dogs.dogDetailPage.DogBreedPaginingSource
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DogRepository(private val dogApi: DogApi)  {
+@Singleton
+class DogRepository @Inject constructor(private val dogApi: DogApi)  {
 
 
     fun getDogBreedsPager(): Flow<PagingData<DogLists>> {

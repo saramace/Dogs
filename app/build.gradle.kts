@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.kapt)
+    alias (libs.plugins.dagger.hilt)
 }
 
 android {
@@ -69,6 +71,12 @@ dependencies {
 
     implementation("androidx.paging:paging-compose:3.3.6")
 
-
-
+    implementation("com.google.dagger:hilt-android:2.57.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    kapt(libs.hilt.compiler)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit.core)
+    implementation(libs.okhttp.core)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
 }

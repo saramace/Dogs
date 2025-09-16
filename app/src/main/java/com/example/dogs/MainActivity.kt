@@ -21,7 +21,9 @@ import com.example.dogs.ui.NavDestinations
 import com.example.dogs.ui.dogDetailRoute
 import com.example.dogs.ui.theme.DogsTheme
 import com.example.dogs.ui.viewModels.DogListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 
@@ -64,7 +66,10 @@ fun AppNavigation(
         ) { backStackEntry ->
             val dogId = backStackEntry.arguments?.getString(NavDestinations.DOG_ID_ARG)
             if (dogId != null) {
-                DogDetailsScreen(dogId = dogId, navController = navController, modifier = modifier)
+                DogDetailsScreen(
+                 //   dogId = dogId,
+                    navController = navController,
+                    modifier = modifier)
             } else {
                 // Handle error
                 Text("Error: Dog ID not found.")

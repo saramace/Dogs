@@ -7,18 +7,19 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.dogs.api.DogLists
 import com.example.dogs.api.DogRepository
-import com.example.dogs.api.RetroFitInstance
 import com.example.dogs.dogDetailPage.DogBreedsListUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
 
-class DogListViewModel(
-    repository: DogRepository = DogRepository(RetroFitInstance.api),
-
+@HiltViewModel
+class DogListViewModel @Inject constructor(
+    repository : DogRepository
 ) : ViewModel() {
 
     val dogBreedsPager: Flow<PagingData<DogLists>> = repository.getDogBreedsPager()
